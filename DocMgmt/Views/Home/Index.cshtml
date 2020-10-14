@@ -1,0 +1,37 @@
+﻿@using DocMgmt.Models
+@using DocMgmt.Models.EFModels
+
+@model List<Document>
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+@(Html.Grid(Model)
+        .Build(columns =>
+        {
+            columns.Add(model => model.Id).Titled("Id");
+            columns.Add(model => model.PropertyId).Titled("PropertyId");
+            columns.Add(model => model.DocType).Titled("DocType");
+            columns.Add(model => model.DownloadUrl).Titled("Download").Css("center").Encoded(false)
+                    .RenderedAs(model => "<a href='" + Url.Action("DownloadDoc") + "?DocId="+ model.Id + "&docType=" + model.DocType + "' class='glyphicon glyphicon-file font1'></a>");
+        })
+        .Pageable()
+        .AppendCss("header-center")
+)
+
+
+@using (Html.BeginForm("AppendDocs", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div style="margin-top:5em">
+        @Html.TextBox("file", "", new { type = "file" }) <br />
+
+        <input type="submit" value="Submit" />
+
+    </div>
+
+
+}  
