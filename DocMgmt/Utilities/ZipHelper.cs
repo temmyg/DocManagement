@@ -54,6 +54,8 @@ namespace DocMgmt.Utilities
                 }
                 fs.Seek(0, SeekOrigin.Begin);
             }
+
+            File.Delete(wkdir + "\\" + fileName);
             using (ZipFile zf = new ZipFile(outputFile))
             {
                 zf.Password = password;

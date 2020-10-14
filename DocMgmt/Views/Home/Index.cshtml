@@ -15,6 +15,7 @@
             columns.Add(model => model.Id).Titled("Id");
             columns.Add(model => model.PropertyId).Titled("PropertyId");
             columns.Add(model => model.DocType).Titled("DocType");
+            columns.Add(model => model.FileName).Titled("File Name");
             columns.Add(model => model.DownloadUrl).Titled("Download").Css("center").Encoded(false)
                     .RenderedAs(model => "<a href='" + Url.Action("DownloadDoc") + "?DocId="+ model.Id + "&docType=" + model.DocType + "' class='glyphicon glyphicon-file font1'></a>");
         })
